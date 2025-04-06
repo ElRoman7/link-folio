@@ -4,6 +4,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { CommonModule } from './common/common.module';
+import { LinksModule } from './links/links.module';
+import { VisitsModule } from './visits/visits.module';
+import { CacheModule } from './cache/cache.module';
+import { JobsModule } from './jobs/jobs.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -24,9 +28,19 @@ import { CommonModule } from './common/common.module';
       autoLoadEntities: true,
       synchronize: true,
     }),
+    BullModule.forRoot({
+      connection: {
+        host: 'localhost',
+        port: 6379,
+      },
+    }),
     AuthModule,
     UsersModule,
     CommonModule,
+    LinksModule,
+    VisitsModule,
+    CacheModule,
+    JobsModule,
   ],
 })
 export class AppModule {}

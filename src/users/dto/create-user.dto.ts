@@ -27,6 +27,11 @@ export class CreateUserDto {
   @MaxLength(70)
   name: string;
 
+  @IsString()
+  @MinLength(2)
+  @MaxLength(70)
+  username: string;
+
   @IsOptional()
   @IsPhoneNumber('MX', { message: 'El número debe ser válido para México' })
   @Length(10, 15, { message: 'El número debe tener entre 10 y 15 caracteres' })

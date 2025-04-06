@@ -59,10 +59,11 @@ export class UsersService {
   }
 
   async findOneById(id: string): Promise<User> {
-    const user: User = await this.usersRepository.findOne({
-      where: { id },
-    });
-    return user;
+    return this.usersRepository.findOneOrFail({ where: { id } });
+  }
+
+  async findByUsername(username: string): Promise<User> {
+    return this.usersRepository.findOneBy({ username });
   }
 
   async activateUser(activateUserDto: ActivateUserDto) {

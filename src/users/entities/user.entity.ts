@@ -1,9 +1,11 @@
 import { Exclude } from 'class-transformer';
+import { Link } from 'src/links/entities/link.entity';
 import {
   BeforeInsert,
   BeforeUpdate,
   Column,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -14,6 +16,9 @@ export class User {
 
   @Column({ length: 40 })
   name: string;
+
+  @Column({ length: 40, unique: true })
+  username: string;
 
   @Column({ length: 100, unique: true })
   email: string;
@@ -52,6 +57,12 @@ export class User {
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date;
+
+  @Column({ nullable: true })
+  bio: string;
+
+  @OneToMany(() => Link, (link) => link.user)
+  links: Link[];
 
   @Column({ type: 'timestamp', nullable: true, onUpdate: 'CURRENT_TIMESTAMP' })
   updated_at: Date;
