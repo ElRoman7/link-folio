@@ -14,6 +14,6 @@ import { BullModule } from '@nestjs/bullmq';
   ],
   controllers: [VisitController],
   providers: [VisitService],
-  exports: [VisitService],
+  exports: [VisitService, TypeOrmModule, BullModule],
 })
 export class VisitsModule {}

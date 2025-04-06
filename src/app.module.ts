@@ -8,6 +8,7 @@ import { LinksModule } from './links/links.module';
 import { VisitsModule } from './visits/visits.module';
 import { CacheModule } from './cache/cache.module';
 import { JobsModule } from './jobs/jobs.module';
+import { BullModule } from '@nestjs/bullmq';
 @Module({
   imports: [
     ConfigModule.forRoot({
